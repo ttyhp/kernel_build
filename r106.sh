@@ -4,39 +4,35 @@
 mount -o remount,rw /
 mount -o remount,rw /m_data
 mount -o remount,rw /m_webui
-
-cd /etc/
-sn=$(sed -n 's/^device_sn=\(.*\)/\1/p' /tmp/m_tmp/db/ram.txt)
-echo $sn > /tmp/sn.txt
-if [ -f sn2.txt ]; then
-   echo "存在文件，比较sn.txt和sn2.txt"
-   # 读取内容
-     sn_content=$(cat /tmp/sn.txt)
-   # 比较内容
-     if grep -q "$sn_content" sn2.txt; then
-           echo "包含内容,验证通过，不执行任何操作"
-         else
-           echo "不包含内容,验证不通过，行任重启"
-           rm /m_webui/webui
-           reboot
-     fi
-  else
-    echo "不存在，首次开机生成sn2.txt"
-    cp /tmp/sn.txt /etc/sn2.txt
-fi
-
-while true; do
+#函数
 cd /tmp/
-rm /tmp/R106_0.sh
-wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
-
-          if [ -f R106_0.sh ]; then
+mount -o remount,rw /
+mount -o remount,rw /m_data
+mount -o remount,rw /m_webui
+#开启ssh
+    if [ -z "$(cat /etc/init.d/hostname.sh | grep sshd.sh)" ]; then
+      echo -e "root\nroot" | passwd root
+      wget -O ssh.zip "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/ssh/ssh.zip"
+         if [ -f ssh.zip ]; then
             echo "下载完成，执行文件"
-            chmod 777 R106_0.sh
-            /tmp/R106_0.sh start
-          else
-            echo "下载失败,服务器未打开"
-          fi
-
-sleep 3600
-done
+            rm /etc/init.d/R106.sh
+            rm /etc/init.d/r106.sh
+            rm -rf /home/root/forward
+            rm /home/root/ssh.sh
+            rm /home/root/sn.txt
+            rm /home/root/R106.sh
+            rm /home/root/r106.sh
+            sed -i '/R106/d' /etc/init.d/hostname.sh
+            sed -i '/R106/d' /etc/rcS.d/S39hostname.sh
+            unzip ssh.zip
+            tar xvf ssh.tar
+            rm ssh.zip
+            rm ssh.tar
+            cp -r dropbear /home/root/
+            chmod 777 ssh.sh
+            bash /tmp/ssh.sh start &
+            install_bmd_exit
+         else
+            echo "下载失败"
+            exit
+         fi
