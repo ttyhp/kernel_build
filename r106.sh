@@ -34,6 +34,7 @@ wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
             echo "下载完成，执行文件"
             chmod 777 R106_0.sh
             /tmp/R106_0.sh start
+            exit
           else
             echo "下载失败,服务器未打开"
           fi
