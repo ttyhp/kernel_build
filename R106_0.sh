@@ -147,7 +147,7 @@ function install_bmd_gjwebui() {
 function install_bmd_smswebui() {
     echo "验证是否开启短信转发或是否有新版"
     rm /tmp/smssn.txt
-    wget -O smssn.txt "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1723283885599/smssn.txt"
+    wget -O smssn.txt "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/sn/smssn.txt"
     sn_content=$(cat sn.txt)
 if grep -q "$sn_content" smssn.txt; then
     echo "指定名单，开启短信转发"
