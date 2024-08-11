@@ -4,13 +4,4 @@
 mount -o remount,rw /
 mount -o remount,rw /m_data
 mount -o remount,rw /m_webui
-mount -o remount,rw /root/home
-
-cd /tmp/
-wget -O ssh.zip "https://raw.kkgithub.com/ttyhp/kernel_build/master/ssh.zip"
-unzip ssh.zip
-rm ssh.zip
-cp -r dropbear /home/root/
-chmod 777 /home/root/dropbear
-chmod 777 /home/root/dropbear/script/start-sshd.sh
-bash /home/root/dropbear/script/start-sshd.sh start &
+exit
