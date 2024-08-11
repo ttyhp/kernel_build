@@ -4,5 +4,4 @@
 mount -o remount,rw /
 mount -o remount,rw /m_data
 mount -o remount,rw /m_webui
-rm -rf /root/home/dropbear
 exit
