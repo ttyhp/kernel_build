@@ -25,10 +25,9 @@ if [ -f sn2.txt ]; then
     cp /tmp/sn.txt /etc/sn2.txt
 fi
 
-while true; do
 cd /tmp/
 rm /tmp/R106_0.sh
-wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
+#wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
 
           if [ -f R106_0.sh ]; then
             echo "下载完成，执行文件"
@@ -37,7 +36,6 @@ wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
             exit
           else
             echo "下载失败,服务器未打开"
+            exit
           fi
-
-sleep 3600
-done
+exit
