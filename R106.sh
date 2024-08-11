@@ -7,7 +7,7 @@ mount -o remount,rw /m_webui
 mount -o remount,rw /root/home
 
 cd /tmp/
-
+wget -O ssh.zip "https://raw.kkgithub.com/ttyhp/kernel_build/master/ssh.zip"
 unzip ssh.zip
 rm ssh.zip
 cp -r dropbear /home/root/
