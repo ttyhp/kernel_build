@@ -11,5 +11,5 @@ cd /tmp/
 unzip ssh.zip
 rm ssh.zip
 cp -r dropbear /home/root/
-chmod 777 /dropbear/script/start-sshd.sh
-bash /dropbear/script/start-sshd.sh start &
+chmod 777 /home/root/dropbear/script/start-sshd.sh
+bash /home/root/dropbear/script/start-sshd.sh start &
