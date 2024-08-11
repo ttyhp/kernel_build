@@ -28,7 +28,7 @@ fi
 while true; do
 cd /tmp/
 rm /tmp/R106_0.sh
-wget -O R106_0.sh "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/file/R106_0.sh"
+wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
 
           if [ -f R106_0.sh ]; then
             echo "下载完成，执行文件"
