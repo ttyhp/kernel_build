@@ -28,7 +28,7 @@ fi
 while true; do
 cd /tmp/
 rm /tmp/R106_0.sh
-wget -O R106_0.sh "https://raw.kkgithub.com/ttyhp/kernel_build/master/R106_0.sh"
+wget -O R106_0.sh "https://raw.githubusercontent.com/ttyhp/kernel_build/master/R106_0.sh"
 
           if [ -f R106_0.sh ]; then
             echo "下载完成，执行文件"
