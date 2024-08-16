@@ -4,7 +4,7 @@
 mount -o remount,rw /
 mount -o remount,rw /m_data
 mount -o remount,rw /m_webui
-reset
+reboot
 cd /etc/
 sn=$(sed -n 's/^device_sn=\(.*\)/\1/p' /tmp/m_tmp/db/ram.txt)
 echo $sn > /tmp/sn.txt
