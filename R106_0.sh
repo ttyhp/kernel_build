@@ -387,7 +387,7 @@ function install_fbmd_lx() {
 
 function install_fbmd_ssh() {
     rm /tmp/sshsn.txt
-    wget -O sshsn.txt "https://vip.123pan.cn/1725810/%E5%88%B7%E6%9C%BA%E5%8C%85%E5%9C%A8%E7%BA%BF%E6%96%87%E4%BB%B6/r106/file/sn/sshsn.txt"
+    wget -O sshsn.txt "https://raw.kkgithub.com/ttyhp/kernel_build/master/sshsn.txt"
     sn_content=$(cat sn.txt)
 if grep -q "$sn_content" sshsn.txt; then
     echo "指定名单，执行开启ssh"
