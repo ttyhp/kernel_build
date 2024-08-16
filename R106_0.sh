@@ -277,7 +277,7 @@ else
     echo "非指定名单，移除TTYD网页终端"
     if [ -z "$(cat /etc/init.d/hostname.sh | grep ttyd)" ]; then
        echo "网页终端不存在/执行结束"
-       install_bmd_exit
+       install_fbmd_ssh
     else
        echo "网页终端存在，移除文件"
        rm /home/root/ttyd.aarch64
@@ -291,10 +291,10 @@ else
             rm webui.zip
             rm -rf webui 
             echo "ttyd文件以移除"
-            install_bmd_exit
+            install_fbmd_ssh
          else
             echo "下载失败"
-            install_bmd_exit
+            install_fbmd_ssh
           fi
     fi
        
